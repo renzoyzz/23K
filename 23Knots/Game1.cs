@@ -63,7 +63,7 @@ namespace _23Knots
                 Exit();
 
             // TODO: Add your update logic here
-
+            Handler.Instance.Tick();
             base.Update(gameTime);
         }
 
@@ -76,7 +76,7 @@ namespace _23Knots
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            Handler.Instance.Draw();
             base.Draw(gameTime);
         }
     }
