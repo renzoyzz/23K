@@ -7,14 +7,19 @@ namespace _23Knots
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class MainGame : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public GraphicsDeviceManager GraphicsDeviceManager { get; }
+        public SpriteBatch SpriteBatch { get; private set; }
 
-        public Game1()
+
+        private static MainGame _instance;
+        public static MainGame Instance => _instance ?? (_instance = new MainGame());
+
+
+        public MainGame()
         {
-            graphics = new GraphicsDeviceManager(this);
+            GraphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -38,7 +43,7 @@ namespace _23Knots
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }
@@ -74,9 +79,8 @@ namespace _23Knots
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             // TODO: Add your drawing code here
-            Handler.Instance.Draw();
+            Handler.Instance.Draw(SpriteBatch);
             base.Draw(gameTime);
         }
     }
