@@ -13,7 +13,6 @@ namespace _23Knots
 
         public void Tick()
         {
-
         }
 
         public void Draw()
