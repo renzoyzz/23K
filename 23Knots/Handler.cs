@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GameObjects;
 using Microsoft.Xna.Framework.Graphics;
+using _23Knots.GameObjects;
 
 namespace _23Knots
 {
@@ -18,6 +18,7 @@ namespace _23Knots
         public Handler()
         {
             _gameObjects.Add(new GameObject());
+            _gameObjects.Add(new Player());
         }
 
         public void Tick()
