@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using _23Knots;
 
-namespace GameObjects
+namespace _23Knots.GameObjects
 {
     public class GameObject
     {
@@ -32,12 +31,12 @@ namespace GameObjects
 
         public virtual void Tick()
         {
-
+            _position.X++;
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, _position, new Rectangle(0, 0, 50, 50), Color.Red);
+            spriteBatch.Draw(_texture, _position, new Rectangle(0, 0, 50, 50), Color.White);
         }
 
         public void SetPosition(Vector2 position)

@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\Player.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="Program.cs" />

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GameObjects;
 using Microsoft.Xna.Framework.Graphics;
+using _23Knots.GameObjects;
 
 namespace _23Knots
 {
