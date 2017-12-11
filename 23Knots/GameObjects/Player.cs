@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using _23Knots.ContentLoader;
 
 namespace _23Knots.GameObjects
@@ -37,7 +38,15 @@ namespace _23Knots.GameObjects
 
         public override void Tick()
         {
-            Position.X++;
+            var keyboardState = Keyboard.GetState();
+            if (keyboardState.IsKeyDown(Keys.Right))
+                Position.X++;
+            else if (keyboardState.IsKeyDown(Keys.Down))
+                Position.Y++;
+            else if (keyboardState.IsKeyDown(Keys.Left))
+                Position.X--;
+            else if (keyboardState.IsKeyDown(Keys.Up))
+                Position.Y--;
             base.Tick();
         }
     }
