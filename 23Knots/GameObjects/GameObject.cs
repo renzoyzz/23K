@@ -7,6 +7,7 @@ namespace _23Knots.GameObjects
     public class GameObject
     {
         protected Texture2D Texture;
+        protected float Speed;
         public Vector2 Position;
 
         public GameObject()
