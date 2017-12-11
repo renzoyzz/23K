@@ -31,12 +31,10 @@ namespace _23Knots
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
             foreach (var gameObject in _gameObjects)
             {
                 gameObject.Draw(spriteBatch);
             }
-            spriteBatch.End();
         }
 
 

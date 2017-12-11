@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using _23Knots.ContentLoader;
 using _23Knots.GameObjects;
+using _23Knots.Utilities;
 
 namespace _23Knots
 {
@@ -13,7 +14,7 @@ namespace _23Knots
     {
         public GraphicsDeviceManager Graphics { get; }
         public SpriteBatch SpriteBatch { get; private set; }
-
+        private FrameRateCounter _fpsCounter;
 
         private static MainGame _instance;
         public static MainGame Instance => _instance ?? (_instance = new MainGame());
@@ -48,8 +49,9 @@ namespace _23Knots
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             TextureLoader.LoadContent();
-
-            // TODO: use this.Content to load your game content here
+            FontLoader.LoadContent(Content);
+            _fpsCounter = new FrameRateCounter();
+            //TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -83,8 +85,11 @@ namespace _23Knots
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            // TODO: Add your drawing code here
+            SpriteBatch.Begin();
             Handler.Instance.Draw(SpriteBatch);
+            _fpsCounter.Draw(gameTime, SpriteBatch);
+            SpriteBatch.End();
+
             base.Draw(gameTime);
         }
     }
