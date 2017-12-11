@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using _23Knots.ContentLoader;
 using _23Knots.GameObjects;
 
 namespace _23Knots
@@ -46,7 +47,7 @@ namespace _23Knots
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            GameObject.LoadContent();
+            TextureLoader.LoadContent();
 
             // TODO: use this.Content to load your game content here
         }

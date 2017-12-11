@@ -18,6 +18,7 @@ namespace _23Knots
         public Handler()
         {
             _gameObjects.Add(new GameObject());
+            _gameObjects.Add(new Player());
         }
 
         public void Tick()
