@@ -1,48 +1,54 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using _23Knots;
+using _23Knots.ContentLoader;
 
-namespace GameObjects
+namespace _23Knots.GameObjects
 {
     public class GameObject
     {
-        private static Texture2D _texture;
-        private Vector2 _position;
-        public Vector2 Position { get; set; }
+        protected Texture2D Texture;
+        public Vector2 Position;
 
         public GameObject()
         {
+            Initialize();
             SetPosition(Vector2.Zero);
         }
 
         public GameObject(Vector2 position)
         {
+            Initialize();
             SetPosition(position);
         }
 
-        public static void LoadContent()
+        public static Texture2D LoadContent()
         {
-            _texture = new Texture2D(MainGame.Instance.Graphics.GraphicsDevice, 1, 1);
+            var texture = new Texture2D(MainGame.Instance.Graphics.GraphicsDevice, 1, 1);
             var dataColors = new[]
             {
                 Color.Red
             };
-            _texture.SetData(dataColors);
+            texture.SetData(dataColors);
+            return texture;
+        }
+
+        private void Initialize()
+        {
+            Texture = Textures.GameObject;
         }
 
         public virtual void Tick()
         {
-
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_texture, _position, new Rectangle(0, 0, 50, 50), Color.Red);
+            spriteBatch.Draw(Texture, Position, new Rectangle(0, 0, 50, 50), Color.White);
         }
 
         public void SetPosition(Vector2 position)
         {
-            _position = position;
+            Position = position;
         }
     }
 }
