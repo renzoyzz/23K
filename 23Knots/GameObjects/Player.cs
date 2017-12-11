@@ -41,11 +41,11 @@ namespace _23Knots.GameObjects
             var keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Right))
                 Position.X++;
-            else if (keyboardState.IsKeyDown(Keys.Down))
+            if (keyboardState.IsKeyDown(Keys.Down))
                 Position.Y++;
-            else if (keyboardState.IsKeyDown(Keys.Left))
+            if (keyboardState.IsKeyDown(Keys.Left))
                 Position.X--;
-            else if (keyboardState.IsKeyDown(Keys.Up))
+            if (keyboardState.IsKeyDown(Keys.Up))
                 Position.Y--;
             base.Tick();
         }
