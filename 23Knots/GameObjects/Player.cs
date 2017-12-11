@@ -51,28 +51,29 @@ namespace _23Knots.GameObjects
         {
             var keyboardState = Keyboard.GetState();
             var directionVector = new Vector2();
-            currentSpeed = Speed;
+            currentSpeed = 0;
             if (keyboardState.IsKeyDown(Keys.Right))
             {
+                currentSpeed = Speed;
                 directionVector.X++;
             }
             if (keyboardState.IsKeyDown(Keys.Down))
             {
+                currentSpeed = Speed;
                 directionVector.Y++;
             }
             if (keyboardState.IsKeyDown(Keys.Left))
             {
+                currentSpeed = Speed;
                 directionVector.X--;
             }
             if (keyboardState.IsKeyDown(Keys.Up))
             {
+                currentSpeed = Speed;
                 directionVector.Y--;
             }
-            else
-            {
-                currentSpeed = 0;
-            }
-            direction = (float)Math.Atan2(directionVector.X, -directionVector.Y);
+          
+            direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
         }
 
         private void Move()
