@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameObjects;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,7 +10,7 @@ namespace _23Knots
     /// </summary>
     public class MainGame : Game
     {
-        public GraphicsDeviceManager GraphicsDeviceManager { get; }
+        public GraphicsDeviceManager Graphics { get; }
         public SpriteBatch SpriteBatch { get; private set; }
 
 
@@ -19,7 +20,8 @@ namespace _23Knots
 
         public MainGame()
         {
-            GraphicsDeviceManager = new GraphicsDeviceManager(this);
+            _instance = this;
+            Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -44,6 +46,7 @@ namespace _23Knots
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
+            GameObject.LoadContent();
 
             // TODO: use this.Content to load your game content here
         }
@@ -64,7 +67,7 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here

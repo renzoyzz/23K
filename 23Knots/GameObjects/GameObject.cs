@@ -6,7 +6,7 @@ namespace GameObjects
 {
     public class GameObject
     {
-        private Texture2D _texture;
+        private static Texture2D _texture;
         private Vector2 _position;
         public Vector2 Position { get; set; }
 
@@ -15,23 +15,19 @@ namespace GameObjects
             SetPosition(Vector2.Zero);
         }
 
-        public GameObject(float xPos, float yPos)
-        {
-            SetPosition(xPos, yPos);
-        }
-
-        public GameObject(float pos)
-        {
-            SetPosition(pos);
-        }
-
         public GameObject(Vector2 position)
         {
             SetPosition(position);
         }
 
-        public void Initialize()
+        public static void LoadContent()
         {
+            _texture = new Texture2D(MainGame.Instance.Graphics.GraphicsDevice, 1, 1);
+            var dataColors = new[]
+            {
+                Color.Red
+            };
+            _texture.SetData(dataColors);
         }
 
         public virtual void Tick()
@@ -41,19 +37,8 @@ namespace GameObjects
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, _position, Color.AliceBlue);
+            spriteBatch.Draw(_texture, _position, new Rectangle(0, 0, 50, 50), Color.Red);
         }
-
-        public void SetPosition(float x, float y)
-        {
-            SetPosition(new Vector2(x, y));
-        }
-
-        public void SetPosition(float pos)
-        {
-            SetPosition(new Vector2(pos));
-        }
-
 
         public void SetPosition(Vector2 position)
         {
