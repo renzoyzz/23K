@@ -72,7 +72,8 @@ namespace _23Knots.GameObjects
                 currentSpeed = Speed;
                 directionVector.Y--;
             }
-          
+            if (directionVector == Vector2.Zero)
+                currentSpeed = 0;
             direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
         }
 
