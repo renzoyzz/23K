@@ -12,7 +12,6 @@ namespace _23Knots.GameObjects
         private InputHandler inputHandler;
         public Player()
         {
-            inputHandler = new InputHandler();
             Initialize();
             SetPosition(Vector2.Zero);
         }
@@ -42,24 +41,23 @@ namespace _23Knots.GameObjects
 
         private void Initialize()
         {
+            inputHandler = new InputHandler();
             Texture = Textures.Player;
-            Velocity = new Velocity(5f, 2f);
+            Velocity = new Velocity(5f, 2f, 2f);
             Size = new Size(50, 50);
         }
 
         public override void Tick()
         {
             inputHandler.EvaluateInput();
-            _direction = inputHandler.getDirection();
-            _force = inputHandler.getForce();
-            Move(_direction, _force);
+            Move(inputHandler.getDirection(), inputHandler.getForce());
             base.Tick();
         }
 
         private void Move(float _direction, float _force)
         {
-            Position.X += (float)Math.Cos(_direction) * (_force * _playerSpeed);
-            Position.Y += (float)Math.Sin(_direction) * (_force * _playerSpeed);
+            Position.X += (float)Math.Cos(_direction) * (_force * Velocity.Speed);
+            Position.Y += (float)Math.Sin(_direction) * (_force * Velocity.Speed);
         }
     }
 }
