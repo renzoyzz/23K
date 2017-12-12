@@ -13,12 +13,14 @@ namespace _23Knots
     public class Handler
     {
         private static Handler _instance;
+
         public static Handler Instance => _instance ?? (_instance = new Handler());
+
         public Camera Camera { get; }
         public InputHandler InputHandler { get; }
         private readonly List<GameObject> _gameObjects = new List<GameObject>();
 
-        public Handler()
+        private Handler()
         {
             _instance = this;
             Camera = new Camera(MainGame.Instance.GraphicsDevice.Viewport);
