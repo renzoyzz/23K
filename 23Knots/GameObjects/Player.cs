@@ -3,13 +3,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using _23Knots.ContentLoader;
+using _23Knots.GameObjects.Properties;
 
 namespace _23Knots.GameObjects
 {
     public class Player : GameObject
     {
-        private float direction = 0f;
-        private float currentSpeed = 0f;
+        private float _direction = 0f;
+        private float _currentSpeed = 0f;
+        protected new Size Size = new Size(50, 50);
 
         public Player()
         {
@@ -57,36 +59,36 @@ namespace _23Knots.GameObjects
         {
             var keyboardState = Keyboard.GetState();
             var directionVector = new Vector2();
-            currentSpeed = 0;
+            _currentSpeed = 0;
             if (keyboardState.IsKeyDown(Keys.Right))
             {
-                currentSpeed = Speed;
+                _currentSpeed = Speed;
                 directionVector.X++;
             }
             if (keyboardState.IsKeyDown(Keys.Down))
             {
-                currentSpeed = Speed;
+                _currentSpeed = Speed;
                 directionVector.Y++;
             }
             if (keyboardState.IsKeyDown(Keys.Left))
             {
-                currentSpeed = Speed;
+                _currentSpeed = Speed;
                 directionVector.X--;
             }
             if (keyboardState.IsKeyDown(Keys.Up))
             {
-                currentSpeed = Speed;
+                _currentSpeed = Speed;
                 directionVector.Y--;
             }
             if (directionVector == Vector2.Zero)
-                currentSpeed = 0;
-            direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
+                _currentSpeed = 0;
+            _direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
         }
 
         private void Move()
         {
-            Position.X += (float)Math.Cos(direction) * currentSpeed;
-            Position.Y += (float)Math.Sin(direction) * currentSpeed;
+            Position.X += (float)Math.Cos(_direction) * _currentSpeed;
+            Position.Y += (float)Math.Sin(_direction) * _currentSpeed;
         }
     }
 }

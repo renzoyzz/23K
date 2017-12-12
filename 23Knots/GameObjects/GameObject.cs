@@ -1,13 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using _23Knots.ContentLoader;
+using _23Knots.GameObjects.Properties;
 
 namespace _23Knots.GameObjects
 {
     public class GameObject
     {
         protected Texture2D Texture;
-        protected Rectangle Size;
+        public Size Size = new Size(50, 50);
         protected float Speed;
         public Vector2 Position;
 
@@ -21,12 +22,6 @@ namespace _23Knots.GameObjects
         {
             Initialize();
             SetPosition(position);
-        }
-
-        public Vector2 getObjectSize()
-        {
-            var currentSize = new Vector2(Size.X, Size.Y);
-            return currentSize;
         }
 
         public static Texture2D LoadContent()
@@ -51,8 +46,8 @@ namespace _23Knots.GameObjects
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Size = new Rectangle(0, 0, 50, 50);
-            spriteBatch.Draw(Texture, Position, Size, Color.White);
+            var drawSize = new Rectangle(0, 0, Size.Width, Size.Height);
+            spriteBatch.Draw(Texture, Position, drawSize, Color.White);
         }
 
         public void SetPosition(Vector2 position)

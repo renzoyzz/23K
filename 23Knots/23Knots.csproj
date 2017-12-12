@@ -48,6 +48,7 @@
     <Compile Include="ContentLoader\Textures.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Player.cs" />
+    <Compile Include="GameObjects\Properties\Size.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="Program.cs" />
