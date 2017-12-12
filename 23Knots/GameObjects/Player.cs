@@ -50,14 +50,16 @@ namespace _23Knots.GameObjects
         public override void Tick()
         {
             inputHandler.EvaluateInput();
-            Move(inputHandler.getDirection(), inputHandler.getForce());
+            Velocity.Speed = inputHandler.getForce();
+            Velocity.Direction = inputHandler.getDirection();
+            Move();
             base.Tick();
         }
 
-        private void Move(float _direction, float _force)
+        private void Move()
         {
-            Position.X += (float)Math.Cos(_direction) * (_force * Velocity.Speed);
-            Position.Y += (float)Math.Sin(_direction) * (_force * Velocity.Speed);
+            Position.X += (float)Math.Cos(Velocity.Direction) * (Velocity.Speed);
+            Position.Y += (float)Math.Sin(Velocity.Direction) * (Velocity.Speed);
         }
     }
 }
