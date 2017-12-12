@@ -34,7 +34,7 @@ namespace _23Knots.GameObjects
             return texture;
         }
 
-        protected virtual void Initialize()
+        private void Initialize()
         {
             Texture = Textures.GameObject;
         }
