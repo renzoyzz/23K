@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using _23Knots.ContentLoader;
@@ -24,6 +25,8 @@ namespace _23Knots
             _instance = this;
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            //Tick Rate
+            TargetElapsedTime = TimeSpan.FromSeconds(1f / 20f);
         }
 
         /// <summary>
