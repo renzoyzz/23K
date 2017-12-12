@@ -9,8 +9,10 @@ namespace _23Knots.GameObjects
 {
     public class Player : DynamicGameObject
     {
+
         public Player()
         {
+            inputHandler = new InputHandler();
             Initialize();
             SetPosition(Vector2.Zero);
         }
@@ -47,45 +49,17 @@ namespace _23Knots.GameObjects
 
         public override void Tick()
         {
-            EvaluateInput();
-            Move();
+            inputHandler.EvaluateInput();
+            _direction = inputHandler.getDirection();
+            _force = inputHandler.getForce();
+            Move(_direction, _force);
             base.Tick();
         }
 
-        private void EvaluateInput()
+        private void Move(float _direction, float _force)
         {
-            var keyboardState = Keyboard.GetState();
-            var directionVector = new Vector2();
-            Velocity.Speed = 0;
-            if (keyboardState.IsKeyDown(Keys.Right))
-            {
-                Velocity.Speed = Velocity.MaxSpeed;
-                directionVector.X++;
-            }
-            if (keyboardState.IsKeyDown(Keys.Down))
-            {
-                Velocity.Speed = Velocity.MaxSpeed;
-                directionVector.Y++;
-            }
-            if (keyboardState.IsKeyDown(Keys.Left))
-            {
-                Velocity.Speed = Velocity.MaxSpeed;
-                directionVector.X--;
-            }
-            if (keyboardState.IsKeyDown(Keys.Up))
-            {
-                Velocity.Speed = Velocity.MaxSpeed;
-                directionVector.Y--;
-            }
-            if (directionVector == Vector2.Zero)
-                Velocity.Speed = 0;
-            Velocity.Direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
-        }
-
-        private void Move()
-        {
-            Position.X += (float)Math.Cos(Velocity.Direction) * Velocity.Speed;
-            Position.Y += (float)Math.Sin(Velocity.Direction) * Velocity.Speed;
+            Position.X += (float)Math.Cos(_direction) * (_force * _playerSpeed);
+            Position.Y += (float)Math.Sin(_direction) * (_force * _playerSpeed);
         }
     }
 }
