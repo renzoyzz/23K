@@ -50,8 +50,8 @@ namespace _23Knots.GameObjects
         public override void Tick()
         {
             inputHandler.EvaluateInput();
-            Velocity.Speed = inputHandler.getForce();
-            Velocity.Direction = inputHandler.getDirection();
+            Velocity.Speed = inputHandler.Force;
+            Velocity.Direction = inputHandler.Direction;
             Move();
             base.Tick();
         }

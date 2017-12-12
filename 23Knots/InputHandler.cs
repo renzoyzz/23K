@@ -10,18 +10,8 @@ namespace _23Knots
 {
     public class InputHandler
     {
-        public float direction;
-        public float force;
-
-        public float getDirection()
-        {
-            return direction;
-        }
-
-        public float getForce()
-        {
-            return force;
-        }
+        public float Direction { get; private set; }
+        public float Force { get; private set; }
 
         public void EvaluateInput()
         {
@@ -48,8 +38,8 @@ namespace _23Knots
                 currentForce = 1f;
                 directionVector.Y--;
             }
-            direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
-            force = currentForce;
+            Direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
+            Force = currentForce;
         }
     }
 }
