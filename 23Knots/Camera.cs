@@ -31,7 +31,7 @@ namespace _23Knots
         public void Update(GameTime gameTime)
         {
             size = _focusedGameObject.getObjectSize();
-            center = new Vector2(_focusedGameObject.Position.X + size.X - (view.Width/2), _focusedGameObject.Position.Y + size.Y - (view.Height/2));
+            center = new Vector2(_focusedGameObject.Position.X + (size.X / 2) - (view.Width / 2), _focusedGameObject.Position.Y + (size.Y / 2) - (view.Height / 2));
             Transform = Matrix.CreateScale(new Vector3(1, 1, 0)) *
                 Matrix.CreateTranslation(new Vector3(-center.X, -center.Y, 0));
         }
