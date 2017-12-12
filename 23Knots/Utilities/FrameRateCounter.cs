@@ -27,8 +27,7 @@ namespace _23Knots.Utilities
             if (elapsedTimeSinceLast.Milliseconds != 0)
                 frameRate = 1000f / elapsedTimeSinceLast.Milliseconds;
             var fps = $"fps: {frameRate}";
-            spriteBatch.DrawString(_spriteFont, fps, new Vector2(1, 1), Color.Black);
-            spriteBatch.DrawString(_spriteFont, fps, new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(_spriteFont, fps, Handler.Instance.Camera.Position, Color.White);
             _lastDrawGameTime = gameTime.TotalGameTime;
         }
     }
