@@ -41,7 +41,7 @@ namespace _23Knots.GameObjects
         private void Initialize()
         {
             Texture = Textures.Player;
-            Velocity = new Velocity(5f);
+            Velocity = new Velocity(5f, 2f);
             Size = new Size(50, 50);
         }
 
