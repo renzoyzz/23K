@@ -17,8 +17,5 @@ namespace _23Knots.GameObjects.Properties
             Speed = speed;
             Direction = direction;
         }
-
-
-
     }
 }
