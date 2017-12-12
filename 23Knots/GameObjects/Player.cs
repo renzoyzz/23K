@@ -38,7 +38,7 @@ namespace _23Knots.GameObjects
             return texture;
         }
 
-        protected override void Initialize()
+        protected sealed override void Initialize()
         {
             Texture = Textures.Player;
             Velocity = new Velocity(5f);
