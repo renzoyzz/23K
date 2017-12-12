@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using _23Knots.ContentLoader;
@@ -11,7 +7,7 @@ namespace _23Knots.Utilities
 {
     public class FrameRateCounter
     {
-        private SpriteFont _spriteFont;
+        private readonly SpriteFont _spriteFont;
         private TimeSpan _lastDrawGameTime;
 
 
