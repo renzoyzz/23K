@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Camera.cs" />
     <Compile Include="ContentLoader\FontLoader.cs" />
     <Compile Include="ContentLoader\Fonts.cs" />
     <Compile Include="ContentLoader\TextureLoader.cs" />

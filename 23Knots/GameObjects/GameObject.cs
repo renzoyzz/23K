@@ -7,6 +7,7 @@ namespace _23Knots.GameObjects
     public class GameObject
     {
         protected Texture2D Texture;
+        protected Rectangle Size;
         protected float Speed;
         public Vector2 Position;
 
@@ -44,7 +45,8 @@ namespace _23Knots.GameObjects
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, new Rectangle(0, 0, 50, 50), Color.White);
+            Size = new Rectangle(0, 0, 50, 50);
+            spriteBatch.Draw(Texture, Position, Size, Color.White);
         }
 
         public void SetPosition(Vector2 position)

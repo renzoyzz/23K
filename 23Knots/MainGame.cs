@@ -19,6 +19,7 @@ namespace _23Knots
         private static MainGame _instance;
         public static MainGame Instance => _instance ?? (_instance = new MainGame());
 
+        Camera camera;
 
         public MainGame()
         {
@@ -36,7 +37,7 @@ namespace _23Knots
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            camera = new Camera(GraphicsDevice.Viewport);
             base.Initialize();
         }
 
@@ -74,7 +75,7 @@ namespace _23Knots
                 Exit();
 
             // TODO: Add your update logic here
-            Handler.Instance.Tick();
+            Handler.Instance.Tick(gameTime, camera);
             base.Update(gameTime);
         }
 
@@ -85,8 +86,8 @@ namespace _23Knots
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            SpriteBatch.Begin();
-            Handler.Instance.Draw(SpriteBatch);
+            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
+            Handler.Instance.Draw(SpriteBatch, camera);
             _fpsCounter.Draw(gameTime, SpriteBatch);
             SpriteBatch.End();
 

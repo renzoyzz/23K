@@ -24,6 +24,12 @@ namespace _23Knots.GameObjects
             SetPosition(position);
         }
 
+        public Vector2 GetPlayerPosition()
+        {
+            var currentPosition = new Vector2(Position.X, Position.Y);
+            return currentPosition;
+        }
+
         public new static Texture2D LoadContent()
         {
             var texture = new Texture2D(MainGame.Instance.Graphics.GraphicsDevice, 1, 1);
