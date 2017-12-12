@@ -9,7 +9,7 @@ namespace _23Knots.GameObjects
 {
     public class Player : DynamicGameObject
     {
-
+        private InputHandler inputHandler;
         public Player()
         {
             inputHandler = new InputHandler();
