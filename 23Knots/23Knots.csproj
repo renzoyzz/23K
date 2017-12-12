@@ -46,9 +46,11 @@
     <Compile Include="ContentLoader\Fonts.cs" />
     <Compile Include="ContentLoader\TextureLoader.cs" />
     <Compile Include="ContentLoader\Textures.cs" />
+    <Compile Include="GameObjects\DynamicGameObject.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameObjects\Properties\Size.cs" />
+    <Compile Include="GameObjects\Properties\Velocity.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="Program.cs" />

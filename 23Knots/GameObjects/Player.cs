@@ -7,15 +7,10 @@ using _23Knots.GameObjects.Properties;
 
 namespace _23Knots.GameObjects
 {
-    public class Player : GameObject
+    public class Player : DynamicGameObject
     {
-        private float _direction = 0f;
-        private float _currentSpeed = 0f;
-        protected new Size Size = new Size(50, 50);
-
         public Player()
         {
-            Speed = 5f;
             Initialize();
             SetPosition(Vector2.Zero);
         }
@@ -43,9 +38,11 @@ namespace _23Knots.GameObjects
             return texture;
         }
 
-        private void Initialize()
+        protected override void Initialize()
         {
             Texture = Textures.Player;
+            Velocity = new Velocity(5f);
+            Size = new Size(50, 50);
         }
 
         public override void Tick()
@@ -59,36 +56,36 @@ namespace _23Knots.GameObjects
         {
             var keyboardState = Keyboard.GetState();
             var directionVector = new Vector2();
-            _currentSpeed = 0;
+            Velocity.Speed = 0;
             if (keyboardState.IsKeyDown(Keys.Right))
             {
-                _currentSpeed = Speed;
+                Velocity.Speed = Velocity.MaxSpeed;
                 directionVector.X++;
             }
             if (keyboardState.IsKeyDown(Keys.Down))
             {
-                _currentSpeed = Speed;
+                Velocity.Speed = Velocity.MaxSpeed;
                 directionVector.Y++;
             }
             if (keyboardState.IsKeyDown(Keys.Left))
             {
-                _currentSpeed = Speed;
+                Velocity.Speed = Velocity.MaxSpeed;
                 directionVector.X--;
             }
             if (keyboardState.IsKeyDown(Keys.Up))
             {
-                _currentSpeed = Speed;
+                Velocity.Speed = Velocity.MaxSpeed;
                 directionVector.Y--;
             }
             if (directionVector == Vector2.Zero)
-                _currentSpeed = 0;
-            _direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
+                Velocity.Speed = 0;
+            Velocity.Direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
         }
 
         private void Move()
         {
-            Position.X += (float)Math.Cos(_direction) * _currentSpeed;
-            Position.Y += (float)Math.Sin(_direction) * _currentSpeed;
+            Position.X += (float)Math.Cos(Velocity.Direction) * Velocity.Speed;
+            Position.Y += (float)Math.Sin(Velocity.Direction) * Velocity.Speed;
         }
     }
 }

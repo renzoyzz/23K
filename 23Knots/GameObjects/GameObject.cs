@@ -9,7 +9,6 @@ namespace _23Knots.GameObjects
     {
         protected Texture2D Texture;
         public Size Size = new Size(50, 50);
-        protected float Speed;
         public Vector2 Position;
 
         public GameObject()
@@ -35,7 +34,7 @@ namespace _23Knots.GameObjects
             return texture;
         }
 
-        private void Initialize()
+        protected virtual void Initialize()
         {
             Texture = Textures.GameObject;
         }

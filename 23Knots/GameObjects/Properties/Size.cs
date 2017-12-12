@@ -11,7 +11,6 @@ namespace _23Knots.GameObjects.Properties
     {
         private Point _size;
 
-
         public Size(int width, int height)
         {
             SetDimensions(width, height);
