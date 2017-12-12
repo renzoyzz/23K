@@ -1,4 +1,6 @@
 ﻿using _23Knots.GameObjects;
+using _23Knots.GameObjects.Dynamic;
+using _23Knots.GameObjects.DynamicGameObjects;
 
 namespace _23Knots.ContentLoader
 {

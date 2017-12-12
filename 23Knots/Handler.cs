@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using _23Knots.GameObjects;
 using Microsoft.Xna.Framework;
+using _23Knots.GameObjects.Dynamic;
+using _23Knots.GameObjects.DynamicGameObjects;
 
 namespace _23Knots
 {

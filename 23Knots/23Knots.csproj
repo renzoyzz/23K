@@ -46,13 +46,13 @@
     <Compile Include="ContentLoader\Fonts.cs" />
     <Compile Include="ContentLoader\TextureLoader.cs" />
     <Compile Include="ContentLoader\Textures.cs" />
-    <Compile Include="GameObjects\DynamicGameObject.cs" />
+    <Compile Include="GameObjects\Dynamic\DynamicGameObject.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
-    <Compile Include="GameObjects\Player.cs" />
+    <Compile Include="GameObjects\Dynamic\Player.cs" />
     <Compile Include="GameObjects\Properties\Size.cs" />
-    <Compile Include="GameObjects\Properties\Stats.cs" />
+    <Compile Include="GameObjects\Dynamic\Properties\Stats.cs" />
     <Compile Include="InputHandler.cs" />
-    <Compile Include="GameObjects\Properties\Velocity.cs" />
+    <Compile Include="GameObjects\Dynamic\Properties\Velocity.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="Program.cs" />
@@ -73,6 +73,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _23Knots.GameObjects.Properties
+﻿namespace _23Knots.GameObjects.Dynamic.Properties
 {
     public class Velocity
     {
