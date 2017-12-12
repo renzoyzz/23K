@@ -23,6 +23,12 @@ namespace _23Knots.GameObjects
             SetPosition(position);
         }
 
+        public Vector2 getObjectSize()
+        {
+            var currentSize = new Vector2(Size.X, Size.Y);
+            return currentSize;
+        }
+
         public static Texture2D LoadContent()
         {
             var texture = new Texture2D(MainGame.Instance.Graphics.GraphicsDevice, 1, 1);
