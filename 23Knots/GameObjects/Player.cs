@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using _23Knots.ContentLoader;
 using _23Knots.GameObjects.Properties;
 
@@ -9,7 +8,9 @@ namespace _23Knots.GameObjects
 {
     public class Player : DynamicGameObject
     {
-        private InputHandler inputHandler;
+        private Stats _stats;
+        private InputHandler _inputHandler;
+
         public Player()
         {
             Initialize();
@@ -41,17 +42,18 @@ namespace _23Knots.GameObjects
 
         private void Initialize()
         {
-            inputHandler = new InputHandler();
+            _inputHandler = new InputHandler();
+            _stats = new Stats(5f, 5f);
             Texture = Textures.Player;
-            Velocity = new Velocity(5f, 2f, 2f);
+            Velocity = new Velocity();
             Size = new Size(50, 50);
         }
 
         public override void Tick()
         {
-            inputHandler.EvaluateInput();
-            Velocity.Speed = inputHandler.Force;
-            Velocity.Direction = inputHandler.Direction;
+            _inputHandler.EvaluateInput();
+            Velocity.Speed = _inputHandler.getForce() * _stats.MaxSpeed;
+            Velocity.Direction = _inputHandler.getDirection();
             Move();
             base.Tick();
         }
