@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Graphics;
 using _23Knots.GameObjects;
 using Microsoft.Xna.Framework;
 using _23Knots.GameObjects.Dynamic;
-using _23Knots.GameObjects.DynamicGameObjects;
 
 namespace _23Knots
 {
@@ -16,11 +15,13 @@ namespace _23Knots
         private static Handler _instance;
         public static Handler Instance => _instance ?? (_instance = new Handler());
         public Camera Camera { get; }
+        public InputHandler InputHandler { get; }
         private readonly List<GameObject> _gameObjects = new List<GameObject>();
 
         public Handler()
         {
             Camera = new Camera(MainGame.Instance.GraphicsDevice.Viewport);
+            InputHandler = new InputHandler();
             _gameObjects.Add(new GameObject());
             var player = new Player();
             _gameObjects.Add(player);
