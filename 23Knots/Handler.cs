@@ -20,6 +20,7 @@ namespace _23Knots
 
         public Handler()
         {
+            _instance = this;
             Camera = new Camera(MainGame.Instance.GraphicsDevice.Viewport);
             InputHandler = new InputHandler();
             _gameObjects.Add(new GameObject());
