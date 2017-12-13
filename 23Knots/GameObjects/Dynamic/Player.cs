@@ -24,12 +24,6 @@ namespace _23Knots.GameObjects.Dynamic
             SetPosition(position);
         }
 
-        public Vector2 GetPlayerPosition()
-        {
-            var currentPosition = new Vector2(Position.X, Position.Y);
-            return currentPosition;
-        }
-
         public new static Texture2D LoadContent()
         {
             var texture = new Texture2D(MainGame.Instance.Graphics.GraphicsDevice, 1, 1);
@@ -44,7 +38,7 @@ namespace _23Knots.GameObjects.Dynamic
         private void Initialize()
         {
             _inputHandler = Handler.Instance.InputHandler;
-            _stats = new Stats(.5f, 5f);
+            _stats = new Stats(.5f, 15f);
             Texture = Textures.Player;
             Velocity = new Velocity();
             Size = new Size(50, 50);
@@ -52,9 +46,8 @@ namespace _23Knots.GameObjects.Dynamic
 
         public override void Tick()
         {
-            
-            EvaluateMovement();
             base.Tick();
+            EvaluateMovement();
         }
 
         private void EvaluateMovement()

@@ -15,6 +15,7 @@ namespace _23Knots
         public Matrix Transform;
         private Viewport _view;
         private GameObject _focusedGameObject;
+        private Vector2 _previousPosition;
         public Vector2 Position { get; private set; }
 
         public Camera(Viewport newView)
@@ -29,12 +30,17 @@ namespace _23Knots
 
         public void Update(GameTime gameTime)
         {
+            _previousPosition = Position;
             var focusedObjectSize = _focusedGameObject.Size;
             var posX = _focusedGameObject.Position.X + (focusedObjectSize.Width / 2f) - (_view.Width / 2f);
             var posY = _focusedGameObject.Position.Y + (focusedObjectSize.Height / 2f) - (_view.Height / 2f);
-            Position = new Vector2(posX, posY);
-            Transform = Matrix.CreateScale(new Vector3(1, 1, 0)) * Matrix.CreateTranslation(new Vector3(-Position.X, -Position.Y, 0));
+            Position = Vector2.Lerp(_previousPosition, new Vector2(posX, posY), 0.5f);
         }
 
+        public void Draw()
+        {
+            var transformVector = Vector2.Lerp(_previousPosition, Position, Handler.Instance.UpdateTimeCoefficient);
+            Transform = Matrix.CreateScale(new Vector3(1, 1, 0)) * Matrix.CreateTranslation(new Vector3(-transformVector.X, -transformVector.Y, 0));
+        }
     }
 }

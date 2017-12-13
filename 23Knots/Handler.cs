@@ -15,9 +15,10 @@ namespace _23Knots
         private static Handler _instance;
         public static Handler Instance => _instance ?? (_instance = new Handler());
 
+        private readonly List<GameObject> _gameObjects = new List<GameObject>();
         public Camera Camera { get; }
         public InputHandler InputHandler { get; }
-        private readonly List<GameObject> _gameObjects = new List<GameObject>();
+        public float UpdateTimeCoefficient => (float)MainGame.Instance.UpdateStopwatch.Elapsed.TotalMilliseconds / (float)MainGame.Instance.TargetElapsedTime.TotalMilliseconds;
 
         private Handler()
         {
@@ -42,6 +43,7 @@ namespace _23Knots
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            Camera.Draw();
             foreach (var gameObject in _gameObjects)
             {
                 gameObject.Draw(spriteBatch);

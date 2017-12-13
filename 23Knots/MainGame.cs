@@ -18,7 +18,7 @@ namespace _23Knots
         public SpriteBatch SpriteBatch { get; private set; }
         public int TargetTicksPerSecond { get; }
         private FrameRateCounter _fpsCounter;
-        private readonly Stopwatch _updateStopwatch;
+        public Stopwatch UpdateStopwatch { get; }
 
         private static MainGame _instance;
         public static MainGame Instance => _instance ?? (_instance = new MainGame());
@@ -32,8 +32,8 @@ namespace _23Knots
             IsFixedTimeStep = false;
             TargetTicksPerSecond = 20;
             TargetElapsedTime = TimeSpan.FromSeconds(1f / TargetTicksPerSecond);
-            _updateStopwatch = new Stopwatch();
-            _updateStopwatch.Start();
+            UpdateStopwatch = new Stopwatch();
+            UpdateStopwatch.Start();
         }
 
         /// <summary>
@@ -78,14 +78,14 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (_updateStopwatch.Elapsed >= TargetElapsedTime)
+            if (UpdateStopwatch.Elapsed >= TargetElapsedTime)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                     Exit();
 
                 // TODO: Add your update logic here
                 Handler.Instance.Tick(gameTime);
-                _updateStopwatch.Restart();
+                UpdateStopwatch.Restart();
                 _fpsCounter.Update();
             }
             base.Update(gameTime);
