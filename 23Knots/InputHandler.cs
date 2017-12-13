@@ -11,7 +11,9 @@ namespace _23Knots
     public class InputHandler
     {
         public float Direction { get; private set; }
-        public float Force { get; private set; }
+        public float Magnitude { get; private set; }
+
+        public Vector2 MovementVector => new Vector2((float)Math.Cos(Direction) * Magnitude, (float)Math.Sin(Direction) * Magnitude);
 
         public void EvaluateInput()
         {
@@ -39,7 +41,7 @@ namespace _23Knots
                 directionVector.Y--;
             }
             Direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
-            Force = currentForce;
+            Magnitude = currentForce;
         }
     }
 }

@@ -44,7 +44,7 @@ namespace _23Knots.GameObjects.Dynamic
         private void Initialize()
         {
             _inputHandler = Handler.Instance.InputHandler;
-            _stats = new Stats(5f, 5f);
+            _stats = new Stats(.5f, 5f);
             Texture = Textures.Player;
             Velocity = new Velocity();
             Size = new Size(50, 50);
@@ -52,14 +52,14 @@ namespace _23Knots.GameObjects.Dynamic
 
         public override void Tick()
         {
-            Velocity.Speed = _inputHandler.Force * _stats.MaxSpeed;
-            Velocity.Direction = _inputHandler.Direction;
-            Move();
+            
+            EvaluateMovement();
             base.Tick();
         }
 
-        private void Move()
+        private void EvaluateMovement()
         {
+            Velocity.ApplyInput(_stats, _inputHandler.MovementVector);
             Position.X += (float)Math.Cos(Velocity.Direction) * (Velocity.Speed);
             Position.Y += (float)Math.Sin(Velocity.Direction) * (Velocity.Speed);
         }
