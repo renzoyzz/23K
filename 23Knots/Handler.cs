@@ -13,7 +13,6 @@ namespace _23Knots
     public class Handler
     {
         private static Handler _instance;
-
         public static Handler Instance => _instance ?? (_instance = new Handler());
 
         public Camera Camera { get; }
@@ -34,6 +33,7 @@ namespace _23Knots
         public void Tick(GameTime gameTime)
         {
             Camera.Update(gameTime);
+            InputHandler.EvaluateInput();
             foreach (var gameObject in _gameObjects)
             {
                 gameObject.Tick();

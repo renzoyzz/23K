@@ -52,7 +52,6 @@ namespace _23Knots.GameObjects.Dynamic
 
         public override void Tick()
         {
-            _inputHandler.EvaluateInput();
             Velocity.Speed = _inputHandler.Force * _stats.MaxSpeed;
             Velocity.Direction = _inputHandler.Direction;
             Move();
