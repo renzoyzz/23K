@@ -47,7 +47,5 @@ namespace _23Knots
                 gameObject.Draw(spriteBatch);
             }
         }
-
-
     }
 }

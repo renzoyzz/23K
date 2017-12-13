@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -16,6 +17,7 @@ namespace _23Knots
         public GraphicsDeviceManager Graphics { get; }
         public SpriteBatch SpriteBatch { get; private set; }
         private FrameRateCounter _fpsCounter;
+        private Stopwatch _updateStopwatch;
 
         private static MainGame _instance;
         public static MainGame Instance => _instance ?? (_instance = new MainGame());
@@ -23,10 +25,13 @@ namespace _23Knots
         public MainGame()
         {
             _instance = this;
-            Graphics = new GraphicsDeviceManager(this);
+            Graphics = new GraphicsDeviceManager(this) {SynchronizeWithVerticalRetrace = false};
             Content.RootDirectory = "Content";
             //Tick Rate
+            IsFixedTimeStep = false;
             TargetElapsedTime = TimeSpan.FromSeconds(1f / 20f);
+            _updateStopwatch = new Stopwatch();
+            _updateStopwatch.Start();
         }
 
         /// <summary>
@@ -51,6 +56,7 @@ namespace _23Knots
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             TextureLoader.LoadContent();
             FontLoader.LoadContent(Content);
+            Graphics.SynchronizeWithVerticalRetrace = false;
             _fpsCounter = new FrameRateCounter();
             //TODO: use this.Content to load your game content here
         }
@@ -71,12 +77,15 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if(_updateStopwatch.Elapsed < TargetElapsedTime)
+                return;
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
             Handler.Instance.Tick(gameTime);
             base.Update(gameTime);
+            _updateStopwatch.Restart();
         }
 
         /// <summary>
