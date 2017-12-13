@@ -10,7 +10,7 @@ namespace _23Knots.Utilities
     {
         private readonly SpriteFont _spriteFont;
         private readonly Stopwatch _stopwatch;
-
+        private float _frameRate;
 
         public FrameRateCounter()
         {
@@ -19,15 +19,26 @@ namespace _23Knots.Utilities
             _stopwatch.Start();
         }
 
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw()
         {
-            Console.WriteLine(gameTime.TotalGameTime);
-            float frameRate = 0f;
-            if (_stopwatch.ElapsedMilliseconds != 0)
-                frameRate = 1000f / _stopwatch.ElapsedMilliseconds;
-            var fps = $"fps: {frameRate}";
-            spriteBatch.DrawString(_spriteFont, fps, Handler.Instance.Camera.Position, Color.White);
+            EvaluateFramerate();
+            DrawFrameRate();
             _stopwatch.Restart();
+        }
+
+        public void EvaluateFramerate()
+        {
+            if (_stopwatch.ElapsedTicks != 0)
+                _frameRate = (float) Math.Round(10000f / _stopwatch.ElapsedTicks);
+        }
+
+        private void DrawFrameRate()
+        {
+            var fps = $"FPS: {_frameRate}";
+            var cameraPos = Handler.Instance.Camera.Position;
+            var spriteBatch = MainGame.Instance.SpriteBatch;
+            spriteBatch.DrawString(_spriteFont, fps, new Vector2(cameraPos.X + 1, cameraPos.Y + 1), Color.Black);
+            spriteBatch.DrawString(_spriteFont, fps, cameraPos, Color.White);
         }
     }
 }

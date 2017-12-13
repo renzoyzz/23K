@@ -56,7 +56,6 @@ namespace _23Knots
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             TextureLoader.LoadContent();
             FontLoader.LoadContent(Content);
-            Graphics.SynchronizeWithVerticalRetrace = false;
             _fpsCounter = new FrameRateCounter();
             //TODO: use this.Content to load your game content here
         }
@@ -77,15 +76,16 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if(_updateStopwatch.Elapsed < TargetElapsedTime)
-                return;
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            if (_updateStopwatch.Elapsed >= TargetElapsedTime)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    Exit();
 
-            // TODO: Add your update logic here
-            Handler.Instance.Tick(gameTime);
+                // TODO: Add your update logic here
+                Handler.Instance.Tick(gameTime);
+                _updateStopwatch.Restart();
+            }
             base.Update(gameTime);
-            _updateStopwatch.Restart();
         }
 
         /// <summary>
@@ -97,10 +97,15 @@ namespace _23Knots
             GraphicsDevice.Clear(Color.CornflowerBlue);
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null,  Handler.Instance.Camera.Transform);
             Handler.Instance.Draw(SpriteBatch);
-            _fpsCounter.Draw(gameTime, SpriteBatch);
+            _fpsCounter.Draw();
             SpriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            base.OnExiting(sender, args);
         }
     }
 }
