@@ -16,8 +16,9 @@ namespace _23Knots
     {
         public GraphicsDeviceManager Graphics { get; }
         public SpriteBatch SpriteBatch { get; private set; }
+        public int TargetTicksPerSecond { get; }
         private FrameRateCounter _fpsCounter;
-        private Stopwatch _updateStopwatch;
+        private readonly Stopwatch _updateStopwatch;
 
         private static MainGame _instance;
         public static MainGame Instance => _instance ?? (_instance = new MainGame());
@@ -29,7 +30,8 @@ namespace _23Knots
             Content.RootDirectory = "Content";
             //Tick Rate
             IsFixedTimeStep = false;
-            TargetElapsedTime = TimeSpan.FromSeconds(1f / 20f);
+            TargetTicksPerSecond = 20;
+            TargetElapsedTime = TimeSpan.FromSeconds(1f / TargetTicksPerSecond);
             _updateStopwatch = new Stopwatch();
             _updateStopwatch.Start();
         }
@@ -84,6 +86,7 @@ namespace _23Knots
                 // TODO: Add your update logic here
                 Handler.Instance.Tick(gameTime);
                 _updateStopwatch.Restart();
+                _fpsCounter.Update();
             }
             base.Update(gameTime);
         }
@@ -99,7 +102,6 @@ namespace _23Knots
             Handler.Instance.Draw(SpriteBatch);
             _fpsCounter.Draw();
             SpriteBatch.End();
-
             base.Draw(gameTime);
         }
 
