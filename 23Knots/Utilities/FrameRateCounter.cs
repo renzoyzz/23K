@@ -20,7 +20,10 @@ namespace _23Knots.Utilities
 
         public void Update()
         {
-            EvaluateFrameRate();
+            if (_frames == 0) return;
+            var ticksPerSecond = MainGame.Instance.TargetTicksPerSecond;
+            _frameRate = Math.Round((double)(ticksPerSecond * _frames));
+            _frames = 0;
         }
 
         public void Draw()
@@ -33,15 +36,5 @@ namespace _23Knots.Utilities
             spriteBatch.DrawString(_spriteFont, fps, cameraPos, Color.White);
 
         }
-
-        private void EvaluateFrameRate()
-        {
-            if(_frames == 0) return;
-            var ticksPerSecond = MainGame.Instance.TargetTicksPerSecond;
-            _frameRate = Math.Round((double) (ticksPerSecond * _frames));
-            _frames = 0;
-        }
-
-
     }
 }
