@@ -26,7 +26,7 @@ namespace _23Knots
         public MainGame()
         {
             _instance = this;
-            Graphics = new GraphicsDeviceManager(this) {SynchronizeWithVerticalRetrace = false};
+            Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             //Tick Rate
             IsFixedTimeStep = false;
