@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using _23Knots.GameObjects.Dynamic.Properties;
 
@@ -12,7 +13,8 @@ namespace _23Knots.GameObjects.Dynamic
         public override void Draw(SpriteBatch spriteBatch)
         {
             var drawSize = new Rectangle(0, 0, Size.Width, Size.Height);
-            var drawPosition = Vector2.Lerp(PreviousPosition, Position, Handler.Instance.UpdateTimeCoefficient);
+            var updateTimeCoefficient = Handler.Instance.UpdateTimeCoefficient;
+            var drawPosition = Vector2.Lerp(PreviousPosition, Position, updateTimeCoefficient);
             spriteBatch.Draw(Texture, drawPosition, drawSize, Color.White);
         }
 
