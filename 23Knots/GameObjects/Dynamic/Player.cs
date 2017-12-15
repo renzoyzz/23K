@@ -53,8 +53,7 @@ namespace _23Knots.GameObjects.Dynamic
         private void EvaluateMovement()
         {
             Velocity.ApplyInput(_stats, _inputHandler.MovementVector);
-            Position.X += (float)Math.Cos(Velocity.Direction) * (Velocity.Speed);
-            Position.Y += (float)Math.Sin(Velocity.Direction) * (Velocity.Speed);
+            Position += Velocity.AsVector;
         }
     }
 }

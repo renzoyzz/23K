@@ -18,7 +18,7 @@ namespace _23Knots.GameObjects.Dynamic.Properties
                 Speed = (float)Math.Sqrt((Math.Pow(value.X, 2) + Math.Pow(value.Y, 2)));
             }
         }
-       
+
         public Velocity(float speed = 0f, float direction = 0f)
         {
             Speed = speed;
@@ -27,8 +27,9 @@ namespace _23Knots.GameObjects.Dynamic.Properties
 
         public void ApplyInput(Stats stats, Vector2 inputVector)
         {
-            inputVector *= stats.MaxSpeed;
-            AsVector = Vector2.LerpPrecise(AsVector, inputVector, stats.Acceleration);
+
+            var desiredVelocity = inputVector * stats.MaxSpeed;
+            AsVector = Vector2.LerpPrecise(AsVector, desiredVelocity, stats.Acceleration);
         }
     }
 }

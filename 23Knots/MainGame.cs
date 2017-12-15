@@ -78,16 +78,13 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (UpdateStopwatch.Elapsed >= TargetElapsedTime)
-            {
-                if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                    Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
 
-                // TODO: Add your update logic here
-                Handler.Instance.Tick(gameTime);
-                UpdateStopwatch.Restart();
-                _fpsCounter.Update();
-            }
+            // TODO: Add your update logic here
+            Handler.Instance.Tick(gameTime);
+            UpdateStopwatch.Restart();
+            _fpsCounter.Update();
             base.Update(gameTime);
         }
 
@@ -98,7 +95,7 @@ namespace _23Knots
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null,  Handler.Instance.Camera.Transform);
+            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, Handler.Instance.Camera.Transform);
             Handler.Instance.Draw(SpriteBatch);
             _fpsCounter.Draw();
             SpriteBatch.End();
