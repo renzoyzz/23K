@@ -20,7 +20,13 @@ namespace _23Knots.GameObjects.Dynamic
 
         public override void Tick()
         {
+            EvaluateMovement();
+        }
+
+        private void EvaluateMovement()
+        {
             PreviousPosition = Position;
+            Position += Velocity.AsVector;
         }
     }
 }

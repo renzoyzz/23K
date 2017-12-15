@@ -46,14 +46,15 @@ namespace _23Knots.GameObjects.Dynamic
 
         public override void Tick()
         {
+            ApplyInput();
             base.Tick();
-            EvaluateMovement();
         }
 
-        private void EvaluateMovement()
+        public void ApplyInput()
         {
             Velocity.ApplyInput(_stats, _inputHandler.MovementVector);
-            Position += Velocity.AsVector;
         }
+
+
     }
 }
