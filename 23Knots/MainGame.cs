@@ -1,8 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using _23Knots.ContentLoader;
 using _23Knots.GameObjects;
+using _23Knots.Utilities;
 
 namespace _23Knots
 {
@@ -13,17 +16,24 @@ namespace _23Knots
     {
         public GraphicsDeviceManager Graphics { get; }
         public SpriteBatch SpriteBatch { get; private set; }
-
+        public int TargetTicksPerSecond { get; }
+        private FrameRateCounter _fpsCounter;
+        public Stopwatch UpdateStopwatch { get; }
 
         private static MainGame _instance;
         public static MainGame Instance => _instance ?? (_instance = new MainGame());
-
 
         public MainGame()
         {
             _instance = this;
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            //Tick Rate
+            IsFixedTimeStep = false;
+            TargetTicksPerSecond = 20;
+            TargetElapsedTime = TimeSpan.FromSeconds(1f / TargetTicksPerSecond);
+            UpdateStopwatch = new Stopwatch();
+            UpdateStopwatch.Start();
         }
 
         /// <summary>
@@ -35,7 +45,6 @@ namespace _23Knots
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -48,8 +57,9 @@ namespace _23Knots
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             TextureLoader.LoadContent();
-
-            // TODO: use this.Content to load your game content here
+            FontLoader.LoadContent(Content);
+            _fpsCounter = new FrameRateCounter();
+            //TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -72,7 +82,9 @@ namespace _23Knots
                 Exit();
 
             // TODO: Add your update logic here
-            Handler.Instance.Tick();
+            Handler.Instance.Tick(gameTime);
+            UpdateStopwatch.Restart();
+            _fpsCounter.Update();
             base.Update(gameTime);
         }
 
@@ -83,9 +95,16 @@ namespace _23Knots
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            // TODO: Add your drawing code here
+            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, Handler.Instance.Camera.Transform);
             Handler.Instance.Draw(SpriteBatch);
+            _fpsCounter.Draw();
+            SpriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            base.OnExiting(sender, args);
         }
     }
 }

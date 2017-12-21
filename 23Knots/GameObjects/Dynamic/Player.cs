@@ -1,12 +1,16 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using _23Knots.ContentLoader;
+using _23Knots.GameObjects.Dynamic.Properties;
+using _23Knots.GameObjects.Properties;
 
-namespace _23Knots.GameObjects
+namespace _23Knots.GameObjects.Dynamic
 {
-    public class Player : GameObject
+    public class Player : DynamicGameObject
     {
+        private Stats _stats;
+        private InputHandler _inputHandler;
 
         public Player()
         {
@@ -33,21 +37,24 @@ namespace _23Knots.GameObjects
 
         private void Initialize()
         {
+            _inputHandler = Handler.Instance.InputHandler;
+            _stats = new Stats(.5f, 15f);
             Texture = Textures.Player;
+            Velocity = new Velocity();
+            Size = new Size(50, 50);
         }
 
         public override void Tick()
         {
-            var keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.Right))
-                Position.X++;
-            if (keyboardState.IsKeyDown(Keys.Down))
-                Position.Y++;
-            if (keyboardState.IsKeyDown(Keys.Left))
-                Position.X--;
-            if (keyboardState.IsKeyDown(Keys.Up))
-                Position.Y--;
+            ApplyInput();
             base.Tick();
         }
+
+        public void ApplyInput()
+        {
+            Velocity.ApplyInput(_stats, _inputHandler.MovementVector);
+        }
+
+
     }
 }

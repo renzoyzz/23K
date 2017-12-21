@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using _23Knots.GameObjects;
+using Microsoft.Xna.Framework;
+using _23Knots.GameObjects.Dynamic;
 
 namespace _23Knots
 {
@@ -14,15 +16,26 @@ namespace _23Knots
         public static Handler Instance => _instance ?? (_instance = new Handler());
 
         private readonly List<GameObject> _gameObjects = new List<GameObject>();
+        public Camera Camera { get; }
+        public InputHandler InputHandler { get; }
+        private float _updateGameCoefficient;
+        public float UpdateTimeCoefficient => (float)MainGame.Instance.UpdateStopwatch.Elapsed.TotalMilliseconds / (float)MainGame.Instance.TargetElapsedTime.TotalMilliseconds;
 
-        public Handler()
+        private Handler()
         {
+            _instance = this;
+            Camera = new Camera(MainGame.Instance.GraphicsDevice.Viewport);
+            InputHandler = new InputHandler();
             _gameObjects.Add(new GameObject());
-            _gameObjects.Add(new Player());
+            var player = new Player();
+            _gameObjects.Add(player);
+            Camera.FocusedGameObject = player;
         }
 
-        public void Tick()
+        public void Tick(GameTime gameTime)
         {
+            Camera.Update(gameTime);
+            InputHandler.EvaluateInput();
             foreach (var gameObject in _gameObjects)
             {
                 gameObject.Tick();
@@ -31,14 +44,11 @@ namespace _23Knots
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            Camera.Draw();
             foreach (var gameObject in _gameObjects)
             {
                 gameObject.Draw(spriteBatch);
             }
-            spriteBatch.End();
         }
-
-
     }
 }
