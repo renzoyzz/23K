@@ -8,7 +8,7 @@ namespace _23Knots.Utilities
 {
     public class FrameRateCounter
     {
-        private readonly SpriteFont _spriteFont;
+        private readonly SpriteFont _spriteFont; 
         private double _frameRate;
         private int _frames;
 
@@ -30,11 +30,10 @@ namespace _23Knots.Utilities
         {
             _frames++;
             var fps = $"FPS: {_frameRate}";
-            var cameraPos = Handler.Instance.Camera.DrawPosition;
+            var cameraPos = Handler.Instance.Camera.ViewPosition;
             var spriteBatch = MainGame.Instance.SpriteBatch;
             spriteBatch.DrawString(_spriteFont, fps, new Vector2(cameraPos.X + 1, cameraPos.Y + 1), Color.Black);
             spriteBatch.DrawString(_spriteFont, fps, cameraPos, Color.White);
-
         }
     }
 }

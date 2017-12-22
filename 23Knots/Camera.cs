@@ -19,6 +19,7 @@ namespace _23Knots
         private Vector2 _previousPosition;
         public Vector2 Position { get; private set; }
         public Vector2 DrawPosition { get; private set; }
+        public Vector2 ViewPosition { get; private set; }
 
         public Camera(Viewport newView)
         {
@@ -38,6 +39,7 @@ namespace _23Knots
             var posX = _focusedGameObject.Position.X + (focusedObjectSize.Width / 2f) - (_view.Width / 2f);
             var posY = _focusedGameObject.Position.Y + (focusedObjectSize.Height / 2f) - (_view.Height / 2f);
             Position = Vector2.Lerp(_previousPosition, new Vector2(posX, posY), _acceleration);
+            ViewPosition = Vector2.Lerp(_previousPosition, new Vector2(posX, posY), -_acceleration);
         }
 
         public void Draw()
