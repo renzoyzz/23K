@@ -84,7 +84,6 @@ namespace _23Knots
 
             // TODO: Add your update logic here
             Handler.Instance.Tick(gameTime);
-            _fpsCounter.Update();
             base.Update(gameTime);
             UpdateHandler.UpdateCalled();
         }
