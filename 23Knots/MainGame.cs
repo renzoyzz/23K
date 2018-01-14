@@ -26,11 +26,15 @@ namespace _23Knots
         public MainGame()
         {
             _instance = this;
-            Graphics = new GraphicsDeviceManager(this);
+            Graphics = new GraphicsDeviceManager(this)
+            {
+                SynchronizeWithVerticalRetrace = false
+            };
             Content.RootDirectory = "Content";
             //Tick Rate
             IsFixedTimeStep = false;
             TargetTicksPerSecond = 20;
+            
             TargetElapsedTime = TimeSpan.FromSeconds(1f / TargetTicksPerSecond);
             UpdateStopwatch = new Stopwatch();
             UpdateStopwatch.Start();
@@ -78,14 +82,17 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (UpdateStopwatch.Elapsed < TargetElapsedTime)
+                return;
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
             Handler.Instance.Tick(gameTime);
-            UpdateStopwatch.Restart();
             _fpsCounter.Update();
             base.Update(gameTime);
+            UpdateStopwatch.Restart();
+
         }
 
         /// <summary>

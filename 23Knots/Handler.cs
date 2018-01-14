@@ -18,7 +18,6 @@ namespace _23Knots
         private readonly List<GameObject> _gameObjects = new List<GameObject>();
         public Camera Camera { get; }
         public InputHandler InputHandler { get; }
-        private float _updateGameCoefficient;
         public float UpdateTimeCoefficient => (float)MainGame.Instance.UpdateStopwatch.Elapsed.TotalMilliseconds / (float)MainGame.Instance.TargetElapsedTime.TotalMilliseconds;
 
         private Handler()
