@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace _23Knots
 {
@@ -14,25 +16,26 @@ namespace _23Knots
         {
             TargetTicksPerSecond = targetTicksPerSecond;
             MainGame.Instance.IsFixedTimeStep = false;
-            MainGame.Instance.TargetElapsedTime =  TimeSpan.FromSeconds(1f / targetTicksPerSecond);
+            MainGame.Instance.TargetElapsedTime = TimeSpan.FromSeconds(1f / targetTicksPerSecond);
         }
 
-        public bool IsTargetTimeElapsed
+        private bool IsTargetTimeElapsed()
         {
-            get
+            if (!_initialized)
             {
-                if (!_initialized)
-                {
-                    _updateStopwatch.Start();
-                    _initialized = true;
-                }
-                return !IsElapsedTimeLessThanTargetTime();
+                _updateStopwatch.Start();
+                _initialized = true;
             }
+            return !IsElapsedTimeLessThanTargetTime();
         }
 
-        public void UpdateCalled()
+        public void Call(GameTime gameTime)
         {
+            if (!IsTargetTimeElapsed())
+                return;
+            Handler.Instance.Tick(gameTime);
             _updateStopwatch.Restart();
+
         }
 
         private bool IsElapsedTimeLessThanTargetTime()

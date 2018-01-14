@@ -9,7 +9,7 @@ namespace _23Knots.Utilities
     public class FrameRateCounter
     {
         private readonly SpriteFont _spriteFont; 
-        private double _frameRate;
+        private long _fps;
         private readonly Stopwatch _timer = new Stopwatch();
 
         public FrameRateCounter()
@@ -21,9 +21,9 @@ namespace _23Knots.Utilities
         public void Draw()
         {
             // ReSharper disable once PossibleLossOfFraction
-            _frameRate = TimeSpan.TicksPerSecond /_timer.ElapsedTicks ;
-            Console.WriteLine(_timer.ElapsedMilliseconds);
-            var fps = $"FPS: {_frameRate}";
+            _fps = TimeSpan.TicksPerSecond /_timer.ElapsedTicks ;
+            Console.WriteLine(_fps);
+            var fps = $"FPS: {_fps}";
             var cameraPos = Handler.Instance.Camera.DrawPosition;
             var spriteBatch = MainGame.Instance.SpriteBatch;
             spriteBatch.DrawString(_spriteFont, fps, new Vector2(cameraPos.X + 1, cameraPos.Y + 1), Color.Black);

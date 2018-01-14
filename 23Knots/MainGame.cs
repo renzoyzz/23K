@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using _23Knots.ContentLoader;
-using _23Knots.GameObjects;
 using _23Knots.Utilities;
 
 namespace _23Knots
@@ -77,15 +75,11 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-           if(!UpdateHandler.IsTargetTimeElapsed)
-                return;
+            UpdateHandler.Call(gameTime);
+
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
-            Handler.Instance.Tick(gameTime);
             base.Update(gameTime);
-            UpdateHandler.UpdateCalled();
         }
 
         /// <summary>
@@ -100,11 +94,6 @@ namespace _23Knots
             _fpsCounter.Draw();
             SpriteBatch.End();
             base.Draw(gameTime);
-        }
-
-        protected override void OnExiting(object sender, EventArgs args)
-        {
-            base.OnExiting(sender, args);
         }
     }
 }
