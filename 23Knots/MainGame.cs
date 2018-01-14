@@ -16,9 +16,8 @@ namespace _23Knots
     {
         public GraphicsDeviceManager Graphics { get; }
         public SpriteBatch SpriteBatch { get; private set; }
-        public int TargetTicksPerSecond { get; }
         private FrameRateCounter _fpsCounter;
-        public Stopwatch UpdateStopwatch { get; }
+        public UpdateHandler UpdateHandler;
 
         private static MainGame _instance;
         public static MainGame Instance => _instance ?? (_instance = new MainGame());
@@ -32,13 +31,9 @@ namespace _23Knots
             };
             Content.RootDirectory = "Content";
             //Tick Rate
-            IsFixedTimeStep = false;
-            TargetTicksPerSecond = 20;
-            
-            TargetElapsedTime = TimeSpan.FromSeconds(1f / TargetTicksPerSecond);
-            UpdateStopwatch = new Stopwatch();
-            UpdateStopwatch.Start();
+            UpdateHandler = new UpdateHandler(20);
         }
+
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -82,7 +77,7 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (UpdateStopwatch.Elapsed < TargetElapsedTime)
+           if(!UpdateHandler.IsTargetTimeElapsed)
                 return;
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -91,8 +86,7 @@ namespace _23Knots
             Handler.Instance.Tick(gameTime);
             _fpsCounter.Update();
             base.Update(gameTime);
-            UpdateStopwatch.Restart();
-
+            UpdateHandler.UpdateCalled();
         }
 
         /// <summary>

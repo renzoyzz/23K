@@ -44,7 +44,7 @@ namespace _23Knots
 
         public void Draw()
         {
-            DrawPosition = Vector2.Lerp(_previousPosition, Position, Handler.Instance.UpdateTimeCoefficient);
+            DrawPosition = Vector2.Lerp(_previousPosition, Position, MainGame.Instance.UpdateHandler.TimeCoefficient);
             Transform = Matrix.CreateScale(new Vector3(1, 1, 0)) * Matrix.CreateTranslation(new Vector3(-DrawPosition.X, -DrawPosition.Y, 0));
         }
     }

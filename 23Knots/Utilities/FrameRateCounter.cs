@@ -21,7 +21,7 @@ namespace _23Knots.Utilities
         public void Update()
         {
             if (_frames == 0) return;
-            var ticksPerSecond = MainGame.Instance.TargetTicksPerSecond;
+            var ticksPerSecond = MainGame.Instance.UpdateHandler.TargetTicksPerSecond;
             _frameRate = Math.Round((double) (ticksPerSecond * _frames));
             _frames = 0;
         }

@@ -13,7 +13,7 @@ namespace _23Knots.GameObjects.Dynamic
         public override void Draw(SpriteBatch spriteBatch)
         {
             var drawSize = new Rectangle(0, 0, Size.Width, Size.Height);
-            var updateTimeCoefficient = Handler.Instance.UpdateTimeCoefficient;
+            var updateTimeCoefficient = MainGame.Instance.UpdateHandler.TimeCoefficient;
             var drawPosition = Vector2.Lerp(PreviousPosition, Position, updateTimeCoefficient);
             spriteBatch.Draw(Texture, drawPosition, drawSize, Color.White);
         }
