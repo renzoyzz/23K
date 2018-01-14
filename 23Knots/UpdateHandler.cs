@@ -10,13 +10,31 @@ namespace _23Knots
         private readonly Stopwatch _updateStopwatch = new Stopwatch();
         private bool _initialized;
         public float TimeCoefficient => (float)_updateStopwatch.Elapsed.TotalMilliseconds / (float)MainGame.Instance.TargetElapsedTime.TotalMilliseconds;
-        public int TargetTicksPerSecond { get; }
+        private int _targetTicksPerSecond;
+
+        public int TargetTicksPerSecond
+        {
+            get => _targetTicksPerSecond;
+            set
+            {
+                _targetTicksPerSecond = value;
+                MainGame.Instance.TargetElapsedTime = TimeSpan.FromSeconds(1f / value);
+            }
+        }
 
         public UpdateHandler(int targetTicksPerSecond)
         {
-            TargetTicksPerSecond = targetTicksPerSecond;
             MainGame.Instance.IsFixedTimeStep = false;
-            MainGame.Instance.TargetElapsedTime = TimeSpan.FromSeconds(1f / targetTicksPerSecond);
+            TargetTicksPerSecond = targetTicksPerSecond;
+        }
+
+        public void Call(GameTime gameTime)
+        {
+            if (!IsTargetTimeElapsed())
+                return;
+            Handler.Instance.Tick(gameTime);
+            _updateStopwatch.Restart();
+
         }
 
         private bool IsTargetTimeElapsed()
@@ -27,15 +45,6 @@ namespace _23Knots
                 _initialized = true;
             }
             return !IsElapsedTimeLessThanTargetTime();
-        }
-
-        public void Call(GameTime gameTime)
-        {
-            if (!IsTargetTimeElapsed())
-                return;
-            Handler.Instance.Tick(gameTime);
-            _updateStopwatch.Restart();
-
         }
 
         private bool IsElapsedTimeLessThanTargetTime()

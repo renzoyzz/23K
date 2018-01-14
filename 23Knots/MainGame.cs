@@ -76,7 +76,6 @@ namespace _23Knots
         protected override void Update(GameTime gameTime)
         {
             UpdateHandler.Call(gameTime);
-
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             base.Update(gameTime);
