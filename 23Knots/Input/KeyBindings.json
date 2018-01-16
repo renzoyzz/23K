@@ -1,5 +1,5 @@
 ﻿{
-  "movement": {
+  "move": {
     "up": 38,
     "down": 40,
     "right": 39,

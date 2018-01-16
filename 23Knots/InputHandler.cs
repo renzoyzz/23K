@@ -12,50 +12,58 @@ namespace _23Knots
         public float Direction { get; private set; }
         public float Magnitude { get; private set; }
         public KeyBindings KeyBindings { get; set; }
-        public Movement Movement { get; set; }
-
         public Vector2 MovementVector => new Vector2((float)Math.Cos(Direction) * Magnitude, (float)Math.Sin(Direction) * Magnitude);
+        private KeyboardState _keyboardState = Keyboard.GetState();
 
         public InputHandler()
         {
             var path = Path.Combine(Directory.GetCurrentDirectory(), "Input/KeyBindings.json");
-            using (StreamReader r = new StreamReader(path))
+            using (var r = new StreamReader(path))
             {
                 var json = r.ReadToEnd();
                 KeyBindings = JsonConvert.DeserializeObject<KeyBindings>(json);
             }
-            Movement = KeyBindings.Movement;
         }
-
-
 
         public void EvaluateInput()
         {
-            var keyboardState = Keyboard.GetState();
+            _keyboardState = Keyboard.GetState();
+            EvaluateMovement();  
+        }
+
+        private void EvaluateMovement()
+        {
+            var move = KeyBindings.Move;
             var directionVector = new Vector2();
             var currentForce = 0f;
-            if (keyboardState.IsKeyDown(Movement.Up))
+            if (IsKeyDown(move.Up))
             {
                 currentForce = 1f;
                 directionVector.Y--;
             }
-            if (keyboardState.IsKeyDown(Movement.Down))
+            if (IsKeyDown(move.Down))
             {
                 currentForce = 1f;
                 directionVector.Y++;
             }
-            if (keyboardState.IsKeyDown(Movement.Left))
+            if (IsKeyDown(move.Left))
             {
                 currentForce = 1f;
                 directionVector.X--;
             }
-            if (keyboardState.IsKeyDown(Movement.Right))
+            if (IsKeyDown(move.Right))
             {
                 currentForce = 1f;
                 directionVector.X++;
             }
             Direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
             Magnitude = currentForce;
+        }
+
+
+        public bool IsKeyDown(Keys key)
+        {
+            return _keyboardState.IsKeyDown(key);
         }
     }
 }

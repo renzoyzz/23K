@@ -2,7 +2,7 @@
 
 namespace _23Knots.Input
 {
-    public class Movement
+    public class Move
     {
         public Keys Up { get; set; }
         public Keys Down { get; set; }

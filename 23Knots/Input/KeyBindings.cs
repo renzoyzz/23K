@@ -2,6 +2,6 @@
 {
     public class KeyBindings
     {
-        public Movement Movement { get; set; }
+        public Move Move { get; set; }
     }
 }

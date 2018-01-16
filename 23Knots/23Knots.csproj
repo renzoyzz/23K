@@ -54,7 +54,7 @@
     <Compile Include="InputHandler.cs" />
     <Compile Include="GameObjects\Dynamic\Properties\Velocity.cs" />
     <Compile Include="Input\KeyBindings.cs" />
-    <Compile Include="Input\Movement.cs" />
+    <Compile Include="Input\Move.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="Program.cs" />
