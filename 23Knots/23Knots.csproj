@@ -51,9 +51,10 @@
     <Compile Include="GameObjects\Dynamic\Player.cs" />
     <Compile Include="GameObjects\Properties\Size.cs" />
     <Compile Include="GameObjects\Dynamic\Properties\Stats.cs" />
+    <Compile Include="Input\Bindings\Value.cs" />
     <Compile Include="Input\InputHandler.cs" />
     <Compile Include="GameObjects\Dynamic\Properties\Velocity.cs" />
-    <Compile Include="Input\Bindings\Bindings.cs" />
+    <Compile Include="Input\Bindings\Binding.cs" />
     <Compile Include="Input\Loader\KeyBindingsJson.cs" />
     <Compile Include="Input\Bindings\Key.cs" />
     <Compile Include="Input\Loader\KeyBindingsLoader.cs" />

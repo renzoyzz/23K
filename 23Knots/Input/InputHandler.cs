@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+using _23Knots.Input.Bindings;
 using _23Knots.Input.Loader;
 
 namespace _23Knots.Input
@@ -10,47 +10,27 @@ namespace _23Knots.Input
         public float Direction { get; private set; }
         public float Magnitude { get; private set; }
         public Vector2 MovementVector => new Vector2((float)Math.Cos(Direction) * Magnitude, (float)Math.Sin(Direction) * Magnitude);
-        private Bindings.Bindings _bindings;
+        private Binding _binding;
 
         public InputHandler()
         {
-           var keyBindingsLoader = new KeyBindingsLoader();
-            _bindings = new Bindings.Bindings(keyBindingsLoader.KeyBindingsJson);
+            var keyBindingsLoader = new KeyBindingsLoader();
+            _binding = new Binding(keyBindingsLoader.KeyBindingsJson);
         }
 
         public void EvaluateInput()
         {
-            _bindings.EvaluateKeys();
-            EvaluateMovement();  
+            _binding.EvaluateKeys();
+            EvaluateMovement();
         }
 
         private void EvaluateMovement()
         {
-            //Evaluate last key pressed.
-            var directionVector = new Vector2();
-            var currentForce = 0f;
-            if (_bindings.UpKey.IsPressed)
-            {
-                currentForce = 1f;
-                directionVector.Y--;
-            }
-            if (_bindings.DownKey.IsPressed)
-            {
-                currentForce = 1f;
-                directionVector.Y++;
-            }
-            if (_bindings.LeftKey.IsPressed)
-            {
-                currentForce = 1f;
-                directionVector.X--;
-            }
-            if (_bindings.RightKey.IsPressed)
-            {
-                currentForce = 1f;
-                directionVector.X++;
-            }
+            var directionVector = new Vector2(_binding.HoriozontalValue, _binding.VerticalValue);
+            if (directionVector != Vector2.Zero)
+                directionVector.Normalize();
             Direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
-            Magnitude = currentForce;
+            Magnitude = (float)Math.Sqrt(Math.Pow(directionVector.X, 2) + Math.Pow(directionVector.Y, 2));
         }
     }
 }
