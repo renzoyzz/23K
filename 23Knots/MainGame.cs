@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using _23Knots.ContentLoader;
-using _23Knots.Utilities;
+using _23Knots.Debug;
 
 namespace _23Knots
 {

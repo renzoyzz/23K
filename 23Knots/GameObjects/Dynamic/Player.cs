@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using _23Knots.ContentLoader;
 using _23Knots.GameObjects.Dynamic.Properties;
 using _23Knots.GameObjects.Properties;
+using _23Knots.Input;
 
 namespace _23Knots.GameObjects.Dynamic
 {

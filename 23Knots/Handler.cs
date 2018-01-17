@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using _23Knots.GameObjects;
 using Microsoft.Xna.Framework;
 using _23Knots.GameObjects.Dynamic;
+using _23Knots.Input;
 
 namespace _23Knots
 {
