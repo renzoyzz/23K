@@ -87,7 +87,7 @@ namespace _23Knots
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, Handler.Instance.Camera.Transform);
+            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, Handler.Instance.Camera.Transformation);
             Handler.Instance.Draw(SpriteBatch);
             _fpsCounter.Draw();
             SpriteBatch.End();
