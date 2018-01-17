@@ -1,13 +1,6 @@
 ﻿using _23Knots.GameObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Win32.SafeHandles;
 
 namespace _23Knots
 {
@@ -21,7 +14,6 @@ namespace _23Knots
         private Viewport _view;
         private GameObject _focusedGameObject;
         private Vector2 _previousPosition;
-        
 
         public Camera(Viewport newView)
         {

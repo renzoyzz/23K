@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using _23Knots.ContentLoader;
 using _23Knots.GameObjects.Dynamic.Properties;
