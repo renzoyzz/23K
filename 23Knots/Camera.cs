@@ -13,14 +13,15 @@ namespace _23Knots
 {
     public class Camera
     {
-        public Matrix Transformation;
+        public Matrix Transformation { get; set; }
+        public float Zoom { get; set; } = 1f;
+        public Vector2 Position { get; private set; }
+        public Vector2 DrawPosition { get; private set; }
         private readonly float _acceleration;
         private Viewport _view;
         private GameObject _focusedGameObject;
         private Vector2 _previousPosition;
-        public float Zoom { get; set; } = 1f;
-        public Vector2 Position { get; private set; }
-        public Vector2 DrawPosition { get; private set; }
+        
 
         public Camera(Viewport newView)
         {
