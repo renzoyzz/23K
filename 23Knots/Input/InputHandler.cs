@@ -10,7 +10,7 @@ namespace _23Knots.Input
         public float Direction { get; private set; }
         public float Magnitude { get; private set; }
         public Vector2 MovementVector => new Vector2((float)Math.Cos(Direction) * Magnitude, (float)Math.Sin(Direction) * Magnitude);
-        private Binding _binding;
+        private readonly Binding _binding;
 
         public InputHandler()
         {
