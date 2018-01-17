@@ -27,8 +27,7 @@ namespace _23Knots
                 SynchronizeWithVerticalRetrace = false
             };
             Content.RootDirectory = "Content";
-            //Tick Rate
-            UpdateHandler = new UpdateHandler(20);
+            UpdateHandler = new UpdateHandler(30);
         }
 
 
