@@ -1,6 +1,6 @@
 namespace _23Knots.Input.Bindings
 {
-    enum Value
+    internal enum Value
     {
         Min = -1,
         Center = 0,
