@@ -7,9 +7,20 @@ namespace _23Knots.Input
 {
     public class InputHandler
     {
-        public float Direction { get; private set; }
-        public float Magnitude { get; private set; }
-        public Vector2 MovementVector => new Vector2((float)Math.Cos(Direction) * Magnitude, (float)Math.Sin(Direction) * Magnitude);
+        public float Direction => (float) Math.Atan2(MovementVector.Y, MovementVector.X);
+        public float Magnitude => (float) Math.Sqrt(Math.Pow(MovementVector.X, 2) + Math.Pow(MovementVector.Y, 2));
+
+        public Vector2 MovementVector
+        {
+            get => _movementVector;
+            private set
+            {
+                if (value != Vector2.Zero) value.Normalize();
+                _movementVector = value;
+            }
+        }
+        private Vector2 _movementVector = Vector2.Zero;
+
         private readonly Binding _binding;
 
         public InputHandler()
@@ -26,11 +37,7 @@ namespace _23Knots.Input
 
         private void EvaluateMovement()
         {
-            var directionVector = new Vector2(_binding.HoriozontalValue, _binding.VerticalValue);
-            if (directionVector != Vector2.Zero)
-                directionVector.Normalize();
-            Direction = (float)Math.Atan2(directionVector.Y, directionVector.X);
-            Magnitude = (float)Math.Sqrt(Math.Pow(directionVector.X, 2) + Math.Pow(directionVector.Y, 2));
+            MovementVector = new Vector2(_binding.HoriozontalValue, _binding.VerticalValue);
         }
     }
 }
