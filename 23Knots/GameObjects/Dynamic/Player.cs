@@ -39,7 +39,7 @@ namespace _23Knots.GameObjects.Dynamic
         private void Initialize()
         {
             _inputHandler = Handler.Instance.InputHandler;
-            _stats = new Stats(.5f, 10f);
+            _stats = new Stats(.2f, 10f);
             Texture = Textures.Player;
             Velocity = new Velocity();
             Size = new Size(50, 50);
