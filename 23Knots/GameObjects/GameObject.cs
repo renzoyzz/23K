@@ -10,6 +10,7 @@ namespace _23Knots.GameObjects
         protected Texture2D Texture;
         public Size Size { get; set; } = new Size(50, 50);
         public Vector2 Position { get; set; }
+        public virtual float ZIndex => Position.Y + Size.Height;
 
         public GameObject()
         {

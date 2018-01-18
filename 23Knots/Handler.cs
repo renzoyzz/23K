@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using _23Knots.GameObjects;
 using Microsoft.Xna.Framework;
@@ -40,7 +41,8 @@ namespace _23Knots
         public void Draw(SpriteBatch spriteBatch)
         {
             Camera.Draw();
-            foreach (var gameObject in _gameObjects)
+            var gameObjectsDrawOrder = _gameObjects.OrderBy(x => x.ZIndex);
+            foreach (var gameObject in gameObjectsDrawOrder)
             {
                 gameObject.Draw(spriteBatch);
             }
