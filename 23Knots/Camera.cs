@@ -7,7 +7,7 @@ namespace _23Knots
     public class Camera
     {
         public Matrix Transformation { get; set; }
-        public float Zoom { get; set; } = 1f;
+        public float Zoom { get; set; } = 3f;
         public Vector2 Position { get; private set; }
         public Vector2 DrawPosition { get; private set; }
         private readonly float _acceleration;
@@ -30,8 +30,8 @@ namespace _23Knots
         {
             _previousPosition = Position;
             var focusedObjectSize = _focusedGameObject.Size;
-            var posX = _focusedGameObject.Position.X + (focusedObjectSize.Width / 2f / Zoom) - (_view.Width / 2f / Zoom);
-            var posY = _focusedGameObject.Position.Y + (focusedObjectSize.Height / 2f / Zoom) - (_view.Height / 2f / Zoom);
+            var posX = _focusedGameObject.Position.X + (focusedObjectSize.Width / 2f) - (_view.Width / 2f / Zoom);
+            var posY = _focusedGameObject.Position.Y + (focusedObjectSize.Height / 2f) - (_view.Height / 2f / Zoom);
             Position = Vector2.Lerp(_previousPosition, new Vector2(posX, posY), _acceleration);
         }
 
