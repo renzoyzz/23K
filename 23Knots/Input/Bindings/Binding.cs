@@ -43,38 +43,26 @@ namespace _23Knots.Input.Bindings
         {
             if (RightKey.IsPressed && LeftKey.IsPressed)
             {
-                if (RightKey.WasPressed && LeftKey.WasPressed)
-                    HoriozontalValue = (float)Value.Max;
-                else if (RightKey.WasPressed)
-                    HoriozontalValue = (float)Value.Max;
-                else if (LeftKey.WasPressed)
-                    HoriozontalValue = (float)Value.Min;
+                if (RightKey.WasPressed && LeftKey.WasPressed) HoriozontalValue = (float)Value.Max;
+                else if (RightKey.WasPressed) HoriozontalValue = (float)Value.Max;
+                else if (LeftKey.WasPressed) HoriozontalValue = (float)Value.Min;
             }
-            else if (RightKey.IsPressed)
-                HoriozontalValue = (float)Value.Max;
-            else if (LeftKey.IsPressed)
-                HoriozontalValue = (float)Value.Min;
-            else if (!RightKey.IsPressed && !LeftKey.IsPressed)
-                HoriozontalValue = (float)Value.Center;
+            else if (RightKey.IsPressed) HoriozontalValue = (float)Value.Max;
+            else if (LeftKey.IsPressed) HoriozontalValue = (float)Value.Min;
+            else if (!RightKey.IsPressed && !LeftKey.IsPressed) HoriozontalValue = (float)Value.Center;
         }
 
         public void EvaluateVerticalValue()
         {
             if (UpKey.IsPressed && DownKey.IsPressed)
             {
-                if (UpKey.WasPressed && DownKey.WasPressed)
-                    VerticalValue = (float)Value.Min;
-                else if (UpKey.WasPressed)
-                    VerticalValue = (float)Value.Min;
-                else if (DownKey.WasPressed)
-                    VerticalValue = (float)Value.Max;
+                if (UpKey.WasPressed && DownKey.WasPressed) VerticalValue = (float)Value.Min;
+                else if (UpKey.WasPressed) VerticalValue = (float)Value.Min;
+                else if (DownKey.WasPressed) VerticalValue = (float)Value.Max;
             }
-            else if (UpKey.IsPressed)
-                VerticalValue = (float)Value.Min;
-            else if (DownKey.IsPressed)
-                VerticalValue = (float)Value.Max;
-            else if (!UpKey.IsPressed && !DownKey.IsPressed)
-                VerticalValue = (float)Value.Center;
+            else if (UpKey.IsPressed) VerticalValue = (float)Value.Min;
+            else if (DownKey.IsPressed) VerticalValue = (float)Value.Max;
+            else if (!UpKey.IsPressed && !DownKey.IsPressed) VerticalValue = (float)Value.Center;
         }
     }
 }
