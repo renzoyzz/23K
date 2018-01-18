@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using _23Knots.GameObjects;
 using Microsoft.Xna.Framework;
+using _23Knots.DebugTools;
 using _23Knots.GameObjects.Dynamic;
 using _23Knots.Input;
 
@@ -25,6 +26,10 @@ namespace _23Knots
             _gameObjects.Add(new GameObject());
             var player = new Player();
             _gameObjects.Add(player);
+            for (int i = 0; i < 10; i++)
+            {
+                _gameObjects.Add(new Player());
+            }
             Camera.FocusedGameObject = player;
         }
 
@@ -46,6 +51,7 @@ namespace _23Knots
             {
                 gameObject.Draw(spriteBatch);
             }
+            Debug.Draw();
         }
     }
 }

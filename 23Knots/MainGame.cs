@@ -89,7 +89,6 @@ namespace _23Knots
             GraphicsDevice.Clear(Color.CornflowerBlue);
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, Handler.Instance.Camera.Transformation);
             Handler.Instance.Draw(SpriteBatch);
-            _fpsCounter.Draw();
             SpriteBatch.End();
             base.Draw(gameTime);
         }
