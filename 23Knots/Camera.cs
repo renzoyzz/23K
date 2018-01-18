@@ -7,7 +7,7 @@ namespace _23Knots
     public class Camera
     {
         public Matrix Transformation { get; set; }
-        public float Zoom { get; set; } = 3f;
+        public float Zoom { get; set; } = 1f;
         public Vector2 Position { get; private set; }
         public Vector2 DrawPosition { get; private set; }
         private readonly float _acceleration;
