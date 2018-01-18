@@ -84,6 +84,7 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            UpdateHandler.DrawCalled();
             GraphicsDevice.Clear(Color.CornflowerBlue);
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, Handler.Instance.Camera.Transformation);
             Handler.Instance.Draw(SpriteBatch);

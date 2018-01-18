@@ -8,7 +8,7 @@ namespace _23Knots
     {
         private readonly Stopwatch _updateStopwatch = new Stopwatch();
         private bool _initialized;
-        public float TimeCoefficient => (float)_updateStopwatch.Elapsed.TotalMilliseconds / (float)MainGame.Instance.TargetElapsedTime.TotalMilliseconds;
+        public float TimeCoefficient { get; set; }
         private int _targetTicksPerSecond;
 
         public int TargetTicksPerSecond
@@ -33,7 +33,11 @@ namespace _23Knots
                 return;
             Handler.Instance.Tick();
             _updateStopwatch.Restart();
+        }
 
+        public void DrawCalled()
+        {
+            TimeCoefficient = (float)_updateStopwatch.Elapsed.TotalMilliseconds / (float)MainGame.Instance.TargetElapsedTime.TotalMilliseconds;
         }
 
         private bool IsTargetTimeElapsed()
