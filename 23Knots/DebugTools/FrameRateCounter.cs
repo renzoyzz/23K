@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using _23Knots.ContentLoader;
 
-namespace _23Knots.Debug
+namespace _23Knots.DebugTools
 {
     public class FrameRateCounter
     {

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using _23Knots.ContentLoader;
-using _23Knots.Debug;
+using _23Knots.DebugTools;
 
 namespace _23Knots
 {
