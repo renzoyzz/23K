@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using _23Knots.ContentLoader;
@@ -20,7 +19,6 @@ namespace _23Knots.DebugTools
 
         public void Draw()
         {
-            // ReSharper disable once PossibleLossOfFraction
             _fps = Stopwatch.Frequency / _timer.ElapsedTicks;
             var fps = $"FPS: {_fps}";
             var cameraPos = Handler.Instance.Camera.DrawPosition;
