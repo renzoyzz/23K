@@ -63,7 +63,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateHandler.cs" />
-    <Compile Include="Debug\FrameRateCounter.cs" />
+    <Compile Include="DebugTools\FrameRateCounter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
