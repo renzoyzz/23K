@@ -10,20 +10,21 @@ namespace _23Knots
         public float Zoom { get; set; } = 1f;
         public Vector2 Position { get; private set; }
         public Vector2 DrawPosition { get; private set; }
+
+        public GameObject FocusedGameObject
+        {
+            set => _focusedGameObject = value;
+        }
+        private GameObject _focusedGameObject;
+
         private readonly float _acceleration;
         private Viewport _view;
-        private GameObject _focusedGameObject;
         private Vector2 _previousPosition;
 
         public Camera(Viewport newView)
         {
             _view = newView;
             _acceleration = .2f;
-        }
-
-        public GameObject FocusedGameObject
-        {
-            set => _focusedGameObject = value;
         }
 
         public void Update(GameTime gameTime)
