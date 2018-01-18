@@ -21,7 +21,7 @@ namespace _23Knots.DebugTools
         public void Draw()
         {
             // ReSharper disable once PossibleLossOfFraction
-            _fps = TimeSpan.TicksPerSecond / _timer.ElapsedTicks;
+            _fps = Stopwatch.Frequency / _timer.ElapsedTicks;
             var fps = $"FPS: {_fps}";
             var cameraPos = Handler.Instance.Camera.DrawPosition;
             var spriteBatch = MainGame.Instance.SpriteBatch;
