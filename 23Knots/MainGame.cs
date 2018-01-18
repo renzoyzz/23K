@@ -23,7 +23,7 @@ namespace _23Knots
             _instance = this;
             Graphics = new GraphicsDeviceManager(this)
             {
-                SynchronizeWithVerticalRetrace = false
+                SynchronizeWithVerticalRetrace = true
             };
             Content.RootDirectory = "Content";
             UpdateHandler = new UpdateHandler(30);
