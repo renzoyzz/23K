@@ -3,9 +3,9 @@ using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using _23Knots.GameObjects;
 using Microsoft.Xna.Framework;
-using _23Knots.DebugTools;
 using _23Knots.GameObjects.Dynamic;
 using _23Knots.Input;
+using Debug = _23Knots.DebugTools.Debug;
 
 namespace _23Knots
 {
@@ -26,16 +26,12 @@ namespace _23Knots
             _gameObjects.Add(new GameObject());
             var player = new Player();
             _gameObjects.Add(player);
-            for (int i = 0; i < 10; i++)
-            {
-                _gameObjects.Add(new Player());
-            }
             Camera.FocusedGameObject = player;
         }
 
-        public void Tick(GameTime gameTime)
+        public void Tick()
         {
-            Camera.Update(gameTime);
+            Camera.Update();
             InputHandler.EvaluateInput();
             foreach (var gameObject in _gameObjects)
             {

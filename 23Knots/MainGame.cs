@@ -13,7 +13,6 @@ namespace _23Knots
     {
         public GraphicsDeviceManager Graphics { get; }
         public SpriteBatch SpriteBatch { get; private set; }
-        private FrameRateCounter _fpsCounter;
         public UpdateHandler UpdateHandler;
 
         private static MainGame _instance;
@@ -54,7 +53,6 @@ namespace _23Knots
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             TextureLoader.LoadContent();
             FontLoader.LoadContent(Content);
-            _fpsCounter = new FrameRateCounter();
             //TODO: use this.Content to load your game content here
         }
 
@@ -74,7 +72,7 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            UpdateHandler.Call(gameTime);
+            UpdateHandler.Call();
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             base.Update(gameTime);

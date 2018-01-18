@@ -27,7 +27,7 @@ namespace _23Knots
             _acceleration = .2f;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             _previousPosition = Position;
             var focusedObjectSize = _focusedGameObject.Size;

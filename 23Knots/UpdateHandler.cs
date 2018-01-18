@@ -27,11 +27,11 @@ namespace _23Knots
             TargetTicksPerSecond = targetTicksPerSecond;
         }
 
-        public void Call(GameTime gameTime)
+        public void Call()
         {
             if (!IsTargetTimeElapsed())
                 return;
-            Handler.Instance.Tick(gameTime);
+            Handler.Instance.Tick();
             _updateStopwatch.Restart();
 
         }
