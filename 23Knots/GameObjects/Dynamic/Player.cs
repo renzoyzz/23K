@@ -54,7 +54,5 @@ namespace _23Knots.GameObjects.Dynamic
         {
             Velocity.ApplyInput(_stats, _inputHandler.MovementVector);
         }
-
-
     }
 }

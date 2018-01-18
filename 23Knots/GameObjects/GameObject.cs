@@ -8,8 +8,8 @@ namespace _23Knots.GameObjects
     public class GameObject
     {
         protected Texture2D Texture;
-        public Size Size = new Size(50, 50);
-        public Vector2 Position;
+        public Size Size { get; set; } = new Size(50, 50);
+        public Vector2 Position { get; set; }
 
         public GameObject()
         {
