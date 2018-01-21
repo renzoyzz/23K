@@ -26,7 +26,7 @@ namespace _23Knots
                 SynchronizeWithVerticalRetrace = true
             };
             Content.RootDirectory = "Content";
-            UpdateHandler = new UpdateHandler(30);
+            UpdateHandler = new UpdateHandler(60);
         }
 
 
@@ -72,7 +72,7 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            UpdateHandler.Call();
+            UpdateHandler.Update();
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             base.Update(gameTime);
@@ -84,7 +84,7 @@ namespace _23Knots
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            UpdateHandler.DrawCalled();
+            UpdateHandler.Draw();
             GraphicsDevice.Clear(Color.CornflowerBlue);
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, Handler.Instance.Camera.Transformation);
             Handler.Instance.Draw(SpriteBatch);

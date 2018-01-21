@@ -6,8 +6,7 @@ namespace _23Knots
 {
     public class UpdateHandler
     {
-        private readonly Stopwatch _updateStopwatch = new Stopwatch();
-        private bool _initialized;
+        private Stopwatch _updateStopwatch;
         public float TimeCoefficient { get; set; }
         private int _targetTicksPerSecond;
 
@@ -27,33 +26,24 @@ namespace _23Knots
             TargetTicksPerSecond = targetTicksPerSecond;
         }
 
-        public void Call()
+        public void Update()
         {
-            if (!IsTargetTimeElapsed())
+            if (!ReadyToUpdate())
                 return;
-            Handler.Instance.Tick();
             _updateStopwatch.Restart();
+            Handler.Instance.Tick();
         }
 
-        public void DrawCalled()
+        public void Draw()
         {
             TimeCoefficient = (float)_updateStopwatch.Elapsed.TotalMilliseconds / (float)MainGame.Instance.TargetElapsedTime.TotalMilliseconds;
         }
 
-        private bool IsTargetTimeElapsed()
+        private bool ReadyToUpdate()
         {
-            if (!_initialized)
-            {
-                _updateStopwatch.Start();
-                _initialized = true;
-            }
-            return !IsElapsedTimeLessThanTargetTime();
-        }
-
-        private bool IsElapsedTimeLessThanTargetTime()
-        {
-            return _updateStopwatch.Elapsed < MainGame.Instance.TargetElapsedTime;
+            if (_updateStopwatch == null)
+                _updateStopwatch = Stopwatch.StartNew();
+            return _updateStopwatch.Elapsed >= MainGame.Instance.TargetElapsedTime;
         }
     }
-
 }
